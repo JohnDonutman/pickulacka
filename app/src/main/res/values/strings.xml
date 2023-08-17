@@ -1,0 +1,45 @@
+<resources>
+    <string name="nazev_aplikace">πčkulačka</string>
+
+    <string name="menu_vzdalenost">Vzdálenost</string>
+    <string name="menu_plocha">Plocha</string>
+    <string name="menu_cas">Čas</string>
+    <string name="menu_objem">Objem</string>
+    <string name="menu_ostatni">Ostatní</string>
+
+    <string name="zadej_vzdalenost">Vzdálenost</string>
+    <string name="palce">Počet palců</string>
+    <string name="penisy">Počet penisů</string>
+    <string name="schody">Počet schodů</string>
+    <string name="sloni">Počet slonů</string>
+    <string name="fabie">Počet Fabií</string>
+    <string name="dan">Jednotek DAN</string>
+    <string name="stadiony">Počet fotbalových hřišť</string>
+    <string name="glompy">Počet glompů</string>
+    <string name="kolem_sveta">Počet objetých zeměkoulí</string>
+    <string name="geldolfy">Počet geldolfů</string>
+
+    <string name="zadej_plochu">Plocha</string>
+    <string name="vaclavaky">Počet Václaváků</string>
+    <string name="bzilion">Už je to bžilion?</string>
+
+    <string name="kdy_prijde">Kolik máš času?</string>
+    <string name="doba">Počet dob</string>
+    <string name="koeficient_zpozdeni">Zadej koeficient zpoždění</string>
+    <string name="dneska">Pravděpodobnost, že přijde dneska</string>
+    <string name="pozdejc">Pravděpodobnost, že přijde pozdějc</string>
+    <string name="pivko">Kolik stihneš dát pivek</string>
+    <string name="mnult">Počet mnultů</string>
+    <string name="uzjdu">Počet užjdů</string>
+
+    <string name="zadej_objem">Zadej objem</string>
+    <string name="brazilsky_pytel">Počet brazilských pytlů</string>
+    <string name="uruguaysky_pytel">Počet uruguayských pytlů</string>
+    <string name="nadrz_fabie">Počet nádrží Fabie</string>
+
+    <string name="zahulenost">Vyber stupeň zahulenosti</string>
+    <string name="bolest_pocit">Vyber pocit bolesti</string>
+    <string name="prd_pocit">Vyber pocit prdu</string>
+    <string name="zadej_spotrebu">Zadej spotřebu paliva</string>
+    <string name="prd_zvuk">Zadej hlasitost prdu</string>
+</resources>

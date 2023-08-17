@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/menu_vzdalenost"
+          android:id="@+id/menu_vzdalenost"
+          android:icon="@drawable/menu_vzdalenost"/>
+
+    <item android:title="@string/menu_plocha"
+          android:id="@+id/menu_plocha"
+          android:icon="@drawable/menu_plocha"/>
+
+    <item android:title="@string/menu_cas"
+          android:id="@+id/menu_cas"
+          android:icon="@drawable/menu_cas"/>
+
+    <item android:title="@string/menu_objem"
+          android:id="@+id/menu_objem"
+          android:icon="@drawable/menu_objem"/>
+
+    <item android:title="@string/menu_ostatni"
+          android:id="@+id/menu_ostatni"
+          android:icon="@drawable/menu_ostatni"/>
+</menu>
