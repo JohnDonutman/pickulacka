@@ -23,16 +23,16 @@
     <string name="vaclavaky">Počet Václaváků</string>
     <string name="bzilion">Už je to bžilion?</string>
 
-    <string name="kdy_prijde">Kolik máš času?</string>
+    <string name="cas">Čas</string>
     <string name="doba">Počet dob</string>
     <string name="koeficient_zpozdeni">Zadej koeficient zpoždění</string>
-    <string name="dneska">Pravděpodobnost, že přijde dneska</string>
-    <string name="pozdejc">Pravděpodobnost, že přijde pozdějc</string>
+    <string name="dneska">Počet dnesků</string>
+    <string name="pozdejc">Počet pozdějců</string>
     <string name="pivko">Kolik stihneš dát pivek</string>
     <string name="mnult">Počet mnultů</string>
     <string name="uzjdu">Počet užjdů</string>
 
-    <string name="zadej_objem">Zadej objem</string>
+    <string name="zadej_objem">Objem</string>
     <string name="brazilsky_pytel">Počet brazilských pytlů</string>
     <string name="uruguaysky_pytel">Počet uruguayských pytlů</string>
     <string name="nadrz_fabie">Počet nádrží Fabie</string>

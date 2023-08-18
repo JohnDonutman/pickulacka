@@ -1,23 +1,16 @@
 package com.nyklundamade.pickulacka;
 
-import android.view.MenuItem;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
-import org.jetbrains.annotations.NotNull;
 
-public class MainActivity extends  FragmentActivity {
+public class MainActivity extends FragmentActivity {
 
-    private AdView bannerAd;
     private ViewPager2 hlavniViewPager;
     private static final int POCET_FRAGMENTU = 5;
     private FragmentStateAdapter pagerAdapter;
@@ -28,7 +21,7 @@ public class MainActivity extends  FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        bannerAd = findViewById(R.id.adView);
+        AdView bannerAd = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         bannerAd.loadAd(adRequest);
 
@@ -79,7 +72,7 @@ public class MainActivity extends  FragmentActivity {
         });
     }
 
-        private class ScreenSlidePagerAdapter extends FragmentStateAdapter {
+        private static class ScreenSlidePagerAdapter extends FragmentStateAdapter {
         public ScreenSlidePagerAdapter(FragmentActivity fa) {
             super(fa);
         }

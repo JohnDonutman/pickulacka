@@ -2,11 +2,11 @@ package com.nyklundamade.pickulacka;
 
 public enum PlochaEnum {
 
-    MILIMETR("mm\\u00B2"),
-    CENTIMETR("cm\\u00B2"),
-    DECIMETR("dm\\u00B2"),
-    METR("m\\u00B2"),
-    KILOMETR("km\\u00B2");
+    MILIMETR("mm\u00B2"),
+    CENTIMETR("cm\u00B2"),
+    DECIMETR("dm\u00B2"),
+    METR("m\u00B2"),
+    KILOMETR("km\u00B2");
 
     private final String znacka;
 
