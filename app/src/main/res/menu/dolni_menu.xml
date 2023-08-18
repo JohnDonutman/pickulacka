@@ -17,7 +17,7 @@
           android:id="@+id/menu_objem"
           android:icon="@drawable/menu_objem"/>
 
-    <item android:title="@string/menu_ostatni"
+    <item android:title="@string/menu_prd"
           android:id="@+id/menu_ostatni"
-          android:icon="@drawable/menu_ostatni"/>
+          android:icon="@drawable/menu_prdy"/>
 </menu>

@@ -39,7 +39,7 @@
             app:layout_constraintTop_toBottomOf="@id/editTextPlocha"
             android:layout_width="match_parent"
             android:layout_height="3dp"
-            android:background="@color/black"
+            android:background="?attr/colorPrimaryVariant"
     />
     <androidx.constraintlayout.widget.Guideline
             android:orientation="vertical"

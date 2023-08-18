@@ -1,4 +1,4 @@
-package com.nyklundamade.pickulacka;
+package com.nyklundamade.pickulacka.enumTridy;
 
 public enum PlochaEnum {
 

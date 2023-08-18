@@ -5,7 +5,7 @@
     <string name="menu_plocha">Plocha</string>
     <string name="menu_cas">Čas</string>
     <string name="menu_objem">Objem</string>
-    <string name="menu_ostatni">Ostatní</string>
+    <string name="menu_prd">Prdy</string>
 
     <string name="zadej_vzdalenost">Vzdálenost</string>
     <string name="palce">Počet palců</string>
@@ -37,9 +37,10 @@
     <string name="uruguaysky_pytel">Počet uruguayských pytlů</string>
     <string name="nadrz_fabie">Počet nádrží Fabie</string>
 
-    <string name="zahulenost">Vyber stupeň zahulenosti</string>
-    <string name="bolest_pocit">Vyber pocit bolesti</string>
-    <string name="prd_pocit">Vyber pocit prdu</string>
-    <string name="zadej_spotrebu">Zadej spotřebu paliva</string>
-    <string name="prd_zvuk">Zadej hlasitost prdu</string>
+    <string name="prduchovo_cislo">Prduchovo číslo</string>
+    <string name="nazev_prduch">Název: </string>
+    <string name="projevy_prduch">Fyzikální projevy: </string>
+    <string name="prd_zvuk">Akustická intenzita prdu</string>
+    <string name="prd_zvuk_nadpis">Intenzita: </string>
+    <string name="prd_zvuk_nazev">Název prdu: </string>
 </resources>

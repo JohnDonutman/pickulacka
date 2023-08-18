@@ -1,4 +1,4 @@
-package com.nyklundamade.pickulacka;
+package com.nyklundamade.pickulacka.fragmenty;
 
 import android.os.Bundle;
 import android.text.InputFilter;
@@ -13,6 +13,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import com.nyklundamade.pickulacka.R;
+import com.nyklundamade.pickulacka.enumTridy.PlochaEnum;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.regex.Matcher;

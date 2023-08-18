@@ -8,6 +8,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.nyklundamade.pickulacka.fragmenty.*;
 
 public class MainActivity extends FragmentActivity {
 
@@ -84,7 +85,7 @@ public class MainActivity extends FragmentActivity {
                 case 1: return new PlochaFragment();
                 case 2: return new CasFragment();
                 case 3: return new ObjemFragment();
-                case 4: return new OstatniFragment();
+                case 4: return new PrdyFragment();
             }
             return null;
         }
