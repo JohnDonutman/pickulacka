@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
+        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="@dimen/okraje"
         xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -50,12 +50,20 @@
             android:layout_margin="@dimen/okraje"
             app:layout_constraintStart_toEndOf="@id/textViewZadejZpozdeni"
             app:layout_constraintTop_toBottomOf="@id/editTextCas"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/textViewZpozdeniZnacka"
             android:inputType="number|numberDecimal"
             android:ems="20"
             android:id="@+id/editTextZpozdeni"
             android:minHeight="48sp"
             android:importantForAutofill="no"/>
+    <TextView
+            android:text=""
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/editTextZpozdeni"
+            app:layout_constraintBottom_toBottomOf="@id/editTextZpozdeni"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/textViewZpozdeniZnacka"/>
     <View
             android:id="@+id/divider"
             app:layout_constraintTop_toBottomOf="@id/editTextZpozdeni"
