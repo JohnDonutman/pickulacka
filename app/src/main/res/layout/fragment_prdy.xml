@@ -20,6 +20,7 @@
             android:minHeight="48sp"
             android:max="17"
             android:progress="8"
+            android:importantForAccessibility="no"
             android:id="@+id/seekBarPrduchovoCislo"/>
     <TableLayout
             android:layout_width="match_parent"
@@ -77,6 +78,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="48sp"
+            android:importantForAccessibility="no"
             android:id="@+id/seekBarPrdZvuk"/>
     <TableLayout
             android:layout_width="match_parent"

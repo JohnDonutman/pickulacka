@@ -26,6 +26,7 @@
             android:ems="20"
             android:id="@+id/editTextObjem"
             android:minHeight="48sp"
+            android:importantForAccessibility="no"
             android:importantForAutofill="no"/>
     <Spinner
             android:layout_width="wrap_content"
@@ -34,6 +35,7 @@
             app:layout_constraintBottom_toBottomOf="@id/editTextObjem"
             app:layout_constraintEnd_toEndOf="parent"
             android:id="@+id/spinnerJendotkyObjem"
+            android:minWidth="48sp"
             android:minHeight="48sp"/>
     <View
             android:id="@+id/divider"
@@ -67,6 +69,7 @@
             android:ems="10"
             android:id="@+id/editTextUruguayskyPytel"
             android:minHeight="48dp"
+            android:importantForAccessibility="no"
             android:importantForAutofill="no"/>
     <TextView
             android:text="@string/brazilsky_pytel"
@@ -86,6 +89,7 @@
             android:inputType="number|numberDecimal"
             android:ems="10"
             android:id="@+id/editTextBrazilskyPytel"
+            android:importantForAccessibility="no"
             android:importantForAutofill="no"
             android:minHeight="48dp"/>
     <TextView
@@ -106,5 +110,6 @@
             android:ems="10"
             android:id="@+id/editTextFabieNadrz"
             android:minHeight="48dp"
+            android:importantForAccessibility="no"
             android:importantForAutofill="no"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

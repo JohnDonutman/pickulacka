@@ -26,6 +26,7 @@
             android:ems="20"
             android:id="@+id/editTextVzdalenost"
             android:minHeight="48sp"
+            android:importantForAccessibility="no"
             android:importantForAutofill="no"/>
     <Spinner
             android:layout_width="wrap_content"
@@ -34,6 +35,8 @@
             app:layout_constraintBottom_toBottomOf="@id/editTextVzdalenost"
             app:layout_constraintEnd_toEndOf="parent"
             android:id="@+id/spinnerJendotkyVzdalenost"
+            android:importantForAccessibility="no"
+            android:minWidth="48sp"
             android:minHeight="48sp"/>
     <View
             android:id="@+id/divider"
@@ -65,7 +68,10 @@
             app:layout_constraintEnd_toEndOf="@id/guideline"
             android:inputType="number|numberDecimal"
             android:ems="10"
-            android:id="@+id/editTextPalce" android:minHeight="48dp" android:importantForAutofill="no"/>
+            android:id="@+id/editTextPalce"
+            android:minHeight="48dp"
+            android:importantForAccessibility="no"
+            android:importantForAutofill="no"/>
     <TextView
             android:text="@string/penisy"
             android:layout_width="wrap_content"
@@ -84,7 +90,9 @@
             android:inputType="number|numberDecimal"
             android:ems="10"
             android:id="@+id/editTextPenisy"
-            android:importantForAutofill="no" android:minHeight="48dp"/>
+            android:importantForAutofill="no"
+            android:importantForAccessibility="no"
+            android:minHeight="48dp"/>
     <TextView
             android:text="@string/schody"
             android:layout_width="wrap_content"
@@ -101,7 +109,10 @@
             app:layout_constraintEnd_toEndOf="@id/guideline"
             android:inputType="number|numberDecimal"
             android:ems="10"
-            android:id="@+id/editTextSchody" android:minHeight="48dp" android:importantForAutofill="no"/>
+            android:id="@+id/editTextSchody"
+            android:minHeight="48dp"
+            android:importantForAccessibility="no"
+            android:importantForAutofill="no"/>
     <TextView
             android:text="@string/sloni"
             android:layout_width="wrap_content"
@@ -120,6 +131,7 @@
             android:ems="10"
             android:id="@+id/editTextSloni"
             android:minHeight="48dp"
+            android:importantForAccessibility="no"
             android:importantForAutofill="no"/>
     <TextView
             android:text="@string/fabie"
@@ -137,7 +149,10 @@
             app:layout_constraintEnd_toEndOf="@id/guideline"
             android:inputType="number|numberDecimal"
             android:ems="10"
-            android:id="@+id/editTextFabie" android:minHeight="48dp" android:importantForAutofill="no"/>
+            android:id="@+id/editTextFabie"
+            android:minHeight="48dp"
+            android:importantForAccessibility="no"
+            android:importantForAutofill="no"/>
     <TextView
             android:text="@string/dan"
             android:layout_width="wrap_content"
@@ -154,7 +169,10 @@
             app:layout_constraintTop_toBottomOf="@id/textViewDan"
             android:inputType="number|numberDecimal"
             android:ems="10"
-            android:id="@+id/editTextDan" android:minHeight="48dp" android:importantForAutofill="no"/>
+            android:id="@+id/editTextDan"
+            android:minHeight="48dp"
+            android:importantForAccessibility="no"
+            android:importantForAutofill="no"/>
     <TextView
             android:text="@string/stadiony"
             android:layout_width="wrap_content"
@@ -171,7 +189,10 @@
             app:layout_constraintEnd_toStartOf="@id/guideline"
             android:inputType="number|numberDecimal"
             android:ems="10"
-            android:id="@+id/editTextStadiony" android:minHeight="48dp" android:importantForAutofill="no"/>
+            android:id="@+id/editTextStadiony"
+            android:minHeight="48dp"
+            android:importantForAccessibility="no"
+            android:importantForAutofill="no"/>
     <TextView
             android:text="@string/glompy"
             android:layout_width="wrap_content"
@@ -188,7 +209,10 @@
             app:layout_constraintTop_toBottomOf="@id/textViewGlompy"
             android:inputType="number|numberDecimal"
             android:ems="10"
-            android:id="@+id/editTextGlompy" android:minHeight="48dp" android:importantForAutofill="no"/>
+            android:id="@+id/editTextGlompy"
+            android:minHeight="48dp"
+            android:importantForAccessibility="no"
+            android:importantForAutofill="no"/>
     <TextView
             android:text="@string/kolem_sveta"
             android:layout_width="wrap_content"
@@ -205,7 +229,10 @@
             app:layout_constraintEnd_toStartOf="@id/guideline"
             android:inputType="number|numberDecimal"
             android:ems="10"
-            android:id="@+id/editTextZemekoule" android:minHeight="48dp" android:importantForAutofill="no"/>
+            android:id="@+id/editTextZemekoule"
+            android:minHeight="48dp"
+            android:importantForAccessibility="no"
+            android:importantForAutofill="no"/>
     <TextView
             android:text="@string/geldolfy"
             android:layout_width="wrap_content"
@@ -222,7 +249,10 @@
             app:layout_constraintTop_toBottomOf="@id/textViewGeldolfy"
             android:inputType="number|numberDecimal"
             android:ems="10"
-            android:id="@+id/editTextGeldolfy" android:minHeight="48dp" android:importantForAutofill="no"/>
+            android:id="@+id/editTextGeldolfy"
+            android:minHeight="48dp"
+            android:importantForAccessibility="no"
+            android:importantForAutofill="no"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

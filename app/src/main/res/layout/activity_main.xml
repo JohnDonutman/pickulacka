@@ -16,7 +16,7 @@
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
             ads:adSize="BANNER"
-            ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
+            ads:adUnitId="ca-app-pub-6504379685745326/4430857806">
     </com.google.android.gms.ads.AdView>
 
     <androidx.viewpager2.widget.ViewPager2

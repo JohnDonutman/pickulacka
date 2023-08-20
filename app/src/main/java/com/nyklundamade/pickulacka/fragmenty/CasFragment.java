@@ -147,7 +147,7 @@ public class CasFragment extends Fragment {
                 android.R.layout.simple_spinner_item, znacky);
         znackyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         jednotkySpinner.setAdapter(znackyAdapter);
-        jednotkySpinner.setSelection(3);
+        jednotkySpinner.setSelection(1);
 
         aktualniZnacka = CasEnum.fromString((String) jednotkySpinner.getSelectedItem());
 
@@ -596,6 +596,7 @@ public class CasFragment extends Fragment {
         String zpozdeniString = editable.toString();
 
         if (zpozdeniString.isEmpty()) {
+            casAktualni = casAktualni - zpozdeniAktualni;
             zpozdeniString = "0";
         }
 

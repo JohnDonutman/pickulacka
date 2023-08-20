@@ -26,6 +26,7 @@
             android:ems="20"
             android:id="@+id/editTextCas"
             android:minHeight="48sp"
+            android:importantForAccessibility="no"
             android:importantForAutofill="no"/>
     <Spinner
             android:layout_width="wrap_content"
@@ -34,6 +35,8 @@
             app:layout_constraintBottom_toBottomOf="@id/editTextCas"
             app:layout_constraintEnd_toEndOf="parent"
             android:id="@+id/spinnerJendotkyCas"
+            android:importantForAccessibility="no"
+            android:minWidth="48sp"
             android:minHeight="48sp"/>
     <TextView
             android:text="@string/koeficient_zpozdeni"
@@ -55,6 +58,8 @@
             android:ems="20"
             android:id="@+id/editTextZpozdeni"
             android:minHeight="48sp"
+            android:minWidth="48sp"
+            android:importantForAccessibility="no"
             android:importantForAutofill="no"/>
     <TextView
             android:text=""
@@ -96,6 +101,7 @@
             android:ems="10"
             android:id="@+id/editTextDnesk"
             android:minHeight="48dp"
+            android:importantForAccessibility="no"
             android:importantForAutofill="no"/>
     <TextView
             android:text="@string/pozdejc"
@@ -115,6 +121,7 @@
             android:inputType="number|numberDecimal"
             android:ems="10"
             android:id="@+id/editTextPozdejc"
+            android:importantForAccessibility="no"
             android:importantForAutofill="no"
             android:minHeight="48dp"/>
     <TextView
@@ -135,6 +142,7 @@
             android:ems="10"
             android:id="@+id/editTextPivko"
             android:minHeight="48dp"
+            android:importantForAccessibility="no"
             android:importantForAutofill="no"/>
     <TextView
             android:text="@string/uzjdu"
@@ -154,6 +162,7 @@
             android:ems="10"
             android:id="@+id/editTextUzjdu"
             android:minHeight="48dp"
+            android:importantForAccessibility="no"
             android:importantForAutofill="no"/>
     <TextView
             android:text="@string/mnult"
@@ -173,5 +182,6 @@
             android:ems="10"
             android:id="@+id/editTextMnult"
             android:minHeight="48dp"
+            android:importantForAccessibility="no"
             android:importantForAutofill="no"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
