@@ -8,6 +8,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -18,7 +19,6 @@ import com.nyklundamade.pickulacka.R;
 import com.nyklundamade.pickulacka.enumTridy.ObjemEnum;
 import org.jetbrains.annotations.NotNull;
 
-import java.text.DecimalFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -26,26 +26,11 @@ public class ObjemFragment extends Fragment {
 
     private Spinner jednotkySpinner;
     private EditText brazilskyPytelEditText, uruguayskyPytelEditText, nadrzeFabieEditText, objemEditText;
-    private TextWatcher textWatcher = new TextWatcher() {
+    private double koeficientZnacky, objemAktualni, brazilskyPytelAktualni, uruguayskyPytelAktualni, nadrzFabieAktualni;
+    private ObjemEnum aktualniZnacka;
+    private final TextWatcher textWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            if (objemEditText.isFocused()) {
-                brazilskyPytelEditText.removeTextChangedListener(textWatcher);
-                uruguayskyPytelEditText.removeTextChangedListener(textWatcher);
-                nadrzeFabieEditText.removeTextChangedListener(textWatcher);
-            } else if (brazilskyPytelEditText.isFocused()) {
-                objemEditText.removeTextChangedListener(textWatcher);
-                uruguayskyPytelEditText.removeTextChangedListener(textWatcher);
-                nadrzeFabieEditText.removeTextChangedListener(textWatcher);
-            } else if (uruguayskyPytelEditText.isFocused()) {
-                objemEditText.removeTextChangedListener(textWatcher);
-                brazilskyPytelEditText.removeTextChangedListener(textWatcher);
-                nadrzeFabieEditText.removeTextChangedListener(textWatcher);
-            } else if (nadrzeFabieEditText.isFocused()) {
-                objemEditText.removeTextChangedListener(textWatcher);
-                brazilskyPytelEditText.removeTextChangedListener(textWatcher);
-                uruguayskyPytelEditText.removeTextChangedListener(textWatcher);
-            }
         }
 
         @Override
@@ -67,21 +52,18 @@ public class ObjemFragment extends Fragment {
         }
     };
 
-    private View.OnFocusChangeListener onFocusChangeListener = new View.OnFocusChangeListener() {
+    private final View.OnFocusChangeListener onFocusChangeListener = new View.OnFocusChangeListener() {
         @Override
         public void onFocusChange(View v, boolean hasFocus) {
             if (hasFocus) {
                 EditText editText = (EditText) v;
 
-                if (editText == objemEditText) {
-                    objemEditText.addTextChangedListener(textWatcher);
-                } else if (editText == brazilskyPytelEditText) {
-                    brazilskyPytelEditText.addTextChangedListener(textWatcher);
-                } else if (editText == uruguayskyPytelEditText) {
-                    uruguayskyPytelEditText.addTextChangedListener(textWatcher);
-                } else if (editText == nadrzeFabieEditText) {
-                    nadrzeFabieEditText.addTextChangedListener(textWatcher);
-                }
+                brazilskyPytelEditText.removeTextChangedListener(textWatcher);
+                uruguayskyPytelEditText.removeTextChangedListener(textWatcher);
+                nadrzeFabieEditText.removeTextChangedListener(textWatcher);
+                objemEditText.removeTextChangedListener(textWatcher);
+
+                editText.addTextChangedListener(textWatcher);
             }
         }
     };
@@ -91,6 +73,13 @@ public class ObjemFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull @NotNull LayoutInflater inflater, @Nullable @org.jetbrains.annotations.Nullable ViewGroup container, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_objem, container, false);
+
+        koeficientZnacky = 1.0;
+
+        objemAktualni = 0.0;
+        brazilskyPytelAktualni = 0.0;
+        uruguayskyPytelAktualni = 0.0;
+        nadrzFabieAktualni = 0.0;
 
         InputFilter decimalFilter = new InputFilter() {
             final Pattern pattern = Pattern.compile("[0-9]*\\.?[0-9]*");
@@ -138,29 +127,152 @@ public class ObjemFragment extends Fragment {
         jednotkySpinner.setAdapter(znackyAdapter);
         jednotkySpinner.setSelection(3);
 
+        aktualniZnacka = ObjemEnum.fromString((String) jednotkySpinner.getSelectedItem());
+
+        jednotkySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                brazilskyPytelEditText.removeTextChangedListener(textWatcher);
+                uruguayskyPytelEditText.removeTextChangedListener(textWatcher);
+                nadrzeFabieEditText.removeTextChangedListener(textWatcher);
+                objemEditText.removeTextChangedListener(textWatcher);
+
+                double nasobitel = getNasobitel();
+
+                // nastavím nový koeficient podle nově zvolené značky
+                switch (position) {
+                    case 0:
+                    case 5: {
+                        koeficientZnacky = 0.001;
+                        break;
+                    }
+                    case 1: {
+                        koeficientZnacky = 0.01;
+                        break;
+                    }
+                    case 2: {
+                        koeficientZnacky = 0.1;
+                        break;
+                    }
+                    case 3:
+                    case 6: {
+                        koeficientZnacky = 1.0;
+                        break;
+                    }
+                    case 4: {
+                        koeficientZnacky = 100.0;
+                        break;
+                    }
+                    case 7: {
+                        koeficientZnacky = 1000.0;
+                        break;
+                    }
+                }
+
+                // následně spočítám skutečnou hodnotu
+                brazilskyPytelAktualni = brazilskyPytelAktualni * nasobitel * koeficientZnacky;
+                uruguayskyPytelAktualni = uruguayskyPytelAktualni * nasobitel * koeficientZnacky;
+                nadrzFabieAktualni = nadrzFabieAktualni * nasobitel * koeficientZnacky;
+
+                // Zaokrouhlení na maximálně 6 desetinných míst
+                brazilskyPytelAktualni = Math.round(brazilskyPytelAktualni * 1e6) / 1e6;
+                uruguayskyPytelAktualni = Math.round(uruguayskyPytelAktualni * 1e6) / 1e6;
+                nadrzFabieAktualni = Math.round(nadrzFabieAktualni * 1e6) / 1e6;
+
+                // a nastavím jako text do polí
+                if (brazilskyPytelAktualni < 0.001) {
+                    brazilskyPytelEditText.setText("0.0");
+                } else {
+                    brazilskyPytelEditText.setText(String.valueOf(brazilskyPytelAktualni));
+                }
+                if (uruguayskyPytelAktualni < 0.001) {
+                    uruguayskyPytelEditText.setText("0.0");
+                } else {
+                    uruguayskyPytelEditText.setText(String.valueOf(uruguayskyPytelAktualni));
+                }
+                if (nadrzFabieAktualni < 0.001) {
+                    nadrzeFabieEditText.setText("0.0");
+                } else {
+                    nadrzeFabieEditText.setText(String.valueOf(nadrzFabieAktualni));
+                }
+
+                // nastavím novou aktuální značku
+                aktualniZnacka = ObjemEnum.fromString((String) jednotkySpinner.getSelectedItem());
+
+                // nastavím listenera na editText zpět
+                if (objemEditText.isFocused()) {
+                    objemEditText.addTextChangedListener(textWatcher);
+                } else if (brazilskyPytelEditText.isFocused()) {
+                    brazilskyPytelEditText.addTextChangedListener(textWatcher);
+                } else if (uruguayskyPytelEditText.isFocused()) {
+                    uruguayskyPytelEditText.addTextChangedListener(textWatcher);
+                } else if (nadrzeFabieEditText.isFocused()) {
+                    nadrzeFabieEditText.addTextChangedListener(textWatcher);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         return view;
+    }
+
+    private double getNasobitel() {
+        double nasobitel = 1.0;
+
+        // zavedu násobitele pro převod na litry podle poslední volené značky
+        if (aktualniZnacka.equals(ObjemEnum.MILILITR) || aktualniZnacka.equals(ObjemEnum.KUBIK_CENTIMETR)) {
+            nasobitel = 1000;
+        } else if (aktualniZnacka.equals(ObjemEnum.CENTILITR)) {
+            nasobitel = 100;
+        } else if (aktualniZnacka.equals(ObjemEnum.DECILITR)) {
+            nasobitel = 10;
+        } else if (aktualniZnacka.equals(ObjemEnum.HEKTOLITR)) {
+            nasobitel = 0.01;
+        } else if (aktualniZnacka.equals(ObjemEnum.KUBIK_METR)) {
+            nasobitel = 0.001;
+        }
+        return nasobitel;
     }
 
     private void pocitejObjem(Editable objemEditable) {
         String objemString = objemEditable.toString();
+
         if (objemString.isEmpty()) {
             objemString = "0";
         }
 
-        double objem = Double.parseDouble(objemString);
+        objemAktualni = Double.parseDouble(objemString);
 
-        double totalBrazilskyPytel = objem / 7.29;
-        double totalUruguayskyPytel = objem / 0.25;
-        double totalNadrze = objem / 45;
+        // výpočet podle litrů
+        brazilskyPytelAktualni = objemAktualni / 7.29 * koeficientZnacky;
+        uruguayskyPytelAktualni = objemAktualni / 0.25 * koeficientZnacky;
+        nadrzFabieAktualni = objemAktualni / 45 * koeficientZnacky;
 
         // Zaokrouhlení na maximálně 6 desetinných míst
-        totalBrazilskyPytel = Math.round(totalBrazilskyPytel * 1e6) / 1e6;
-        totalUruguayskyPytel = Math.round(totalUruguayskyPytel * 1e6) / 1e6;
-        totalNadrze = Math.round(totalNadrze * 1e6) / 1e6;
+        brazilskyPytelAktualni = Math.round(brazilskyPytelAktualni * 1e6) / 1e6;
+        uruguayskyPytelAktualni = Math.round(uruguayskyPytelAktualni * 1e6) / 1e6;
+        nadrzFabieAktualni = Math.round(nadrzFabieAktualni * 1e6) / 1e6;
 
-        brazilskyPytelEditText.setText(String.valueOf(totalBrazilskyPytel));
-        uruguayskyPytelEditText.setText(String.valueOf(totalUruguayskyPytel));
-        nadrzeFabieEditText.setText(String.valueOf(totalNadrze));
+        if (brazilskyPytelAktualni < 0.001) {
+            brazilskyPytelEditText.setText("0.0");
+        } else {
+            brazilskyPytelEditText.setText(String.valueOf(brazilskyPytelAktualni));
+        }
+        if (uruguayskyPytelAktualni < 0.001) {
+            uruguayskyPytelEditText.setText("0.0");
+        } else {
+            uruguayskyPytelEditText.setText(String.valueOf(uruguayskyPytelAktualni));
+        }
+        if (nadrzFabieAktualni < 0.001) {
+            nadrzeFabieEditText.setText("0.0");
+        } else {
+            nadrzeFabieEditText.setText(String.valueOf(nadrzFabieAktualni));
+        }
     }
 
     private void pocitejBrazilskePytle(Editable pytleEditable) {
@@ -169,20 +281,32 @@ public class ObjemFragment extends Fragment {
             pytleString = "0";
         }
 
-        double pytle = Double.parseDouble(pytleString);
+        brazilskyPytelAktualni = Double.parseDouble(pytleString);
 
-        double totalObjem = pytle * 7.29;
-        double totalUruguayskyPytel = totalObjem / 0.25;
-        double totalNadrze = totalObjem / 45;
+        objemAktualni = brazilskyPytelAktualni * 7.29 / koeficientZnacky;
+        uruguayskyPytelAktualni = objemAktualni / 0.25 * koeficientZnacky;
+        nadrzFabieAktualni = objemAktualni / 45 * koeficientZnacky;
 
         // Zaokrouhlení na maximálně 6 desetinných míst
-        totalObjem = Math.round(totalObjem * 1e6) / 1e6;
-        totalUruguayskyPytel = Math.round(totalUruguayskyPytel * 1e6) / 1e6;
-        totalNadrze = Math.round(totalNadrze * 1e6) / 1e6;
+        objemAktualni = Math.round(objemAktualni * 1e6) / 1e6;
+        uruguayskyPytelAktualni = Math.round(uruguayskyPytelAktualni * 1e6) / 1e6;
+        nadrzFabieAktualni = Math.round(nadrzFabieAktualni * 1e6) / 1e6;
 
-        objemEditText.setText(String.valueOf(totalObjem));
-        uruguayskyPytelEditText.setText(String.valueOf(totalUruguayskyPytel));
-        nadrzeFabieEditText.setText(String.valueOf(totalNadrze));
+        if (objemAktualni < 0.001) {
+            objemEditText.setText("0.0");
+        } else {
+            objemEditText.setText(String.valueOf(objemAktualni));
+        }
+        if (uruguayskyPytelAktualni < 0.001) {
+            uruguayskyPytelEditText.setText("0.0");
+        } else {
+            uruguayskyPytelEditText.setText(String.valueOf(uruguayskyPytelAktualni));
+        }
+        if (nadrzFabieAktualni < 0.001) {
+            nadrzeFabieEditText.setText("0.0");
+        } else {
+            nadrzeFabieEditText.setText(String.valueOf(nadrzFabieAktualni));
+        }
 
     }
 
@@ -192,20 +316,32 @@ public class ObjemFragment extends Fragment {
             pytleString = "0";
         }
 
-        double pytle = Double.parseDouble(pytleString);
+        uruguayskyPytelAktualni = Double.parseDouble(pytleString);
 
-        double totalObjem = pytle * 0.25;
-        double totalBrazilskyPytel = totalObjem / 7.29;
-        double totalNadrze = totalObjem / 45;
+        objemAktualni = uruguayskyPytelAktualni * 0.25 / koeficientZnacky;
+        brazilskyPytelAktualni = objemAktualni / 7.29 * koeficientZnacky;
+        nadrzFabieAktualni = objemAktualni / 45 * koeficientZnacky;
 
         // Zaokrouhlení na maximálně 6 desetinných míst
-        totalObjem = Math.round(totalObjem * 1e6) / 1e6;
-        totalBrazilskyPytel = Math.round(totalBrazilskyPytel * 1e6) / 1e6;
-        totalNadrze = Math.round(totalNadrze * 1e6) / 1e6;
+        objemAktualni = Math.round(objemAktualni * 1e6) / 1e6;
+        brazilskyPytelAktualni = Math.round(brazilskyPytelAktualni * 1e6) / 1e6;
+        nadrzFabieAktualni = Math.round(nadrzFabieAktualni * 1e6) / 1e6;
 
-        objemEditText.setText(String.valueOf(totalObjem));
-        brazilskyPytelEditText.setText(String.valueOf(totalBrazilskyPytel));
-        nadrzeFabieEditText.setText(String.valueOf(totalNadrze));
+        if (brazilskyPytelAktualni < 0.001) {
+            brazilskyPytelEditText.setText("0.0");
+        } else {
+            brazilskyPytelEditText.setText(String.valueOf(brazilskyPytelAktualni));
+        }
+        if (objemAktualni < 0.001) {
+            objemEditText.setText("0.0");
+        } else {
+            objemEditText.setText(String.valueOf(objemAktualni));
+        }
+        if (nadrzFabieAktualni < 0.001) {
+            nadrzeFabieEditText.setText("0.0");
+        } else {
+            nadrzeFabieEditText.setText(String.valueOf(nadrzFabieAktualni));
+        }
     }
 
     private void pocitejNadrze(Editable nadrzeEditable) {
@@ -214,21 +350,31 @@ public class ObjemFragment extends Fragment {
             nadrzeString = "0";
         }
 
-        double nadrze = Double.parseDouble(nadrzeString);
+        nadrzFabieAktualni = Double.parseDouble(nadrzeString);
 
-        double totalObjem = nadrze * 45;
-        double totalUruguayskyPytel = totalObjem / 0.25;
-        double totalBrazilskyPytel = totalObjem / 7.29;
+        objemAktualni = nadrzFabieAktualni * 45 / koeficientZnacky;
+        uruguayskyPytelAktualni = objemAktualni / 0.25 * koeficientZnacky;
+        brazilskyPytelAktualni = objemAktualni / 7.29 * koeficientZnacky;
 
         // Zaokrouhlení na maximálně 6 desetinných míst
-        totalObjem = Math.round(totalObjem * 1e6) / 1e6;
-        totalBrazilskyPytel = Math.round(totalBrazilskyPytel * 1e6) / 1e6;
-        totalUruguayskyPytel = Math.round(totalUruguayskyPytel * 1e6) / 1e6;
+        objemAktualni = Math.round(objemAktualni * 1e6) / 1e6;
+        brazilskyPytelAktualni = Math.round(brazilskyPytelAktualni * 1e6) / 1e6;
+        uruguayskyPytelAktualni = Math.round(uruguayskyPytelAktualni * 1e6) / 1e6;
 
-        objemEditText.setText(String.valueOf(totalObjem));
-        brazilskyPytelEditText.setText(String.valueOf(totalBrazilskyPytel));
-        uruguayskyPytelEditText.setText(String.valueOf(totalUruguayskyPytel));
+        if (brazilskyPytelAktualni < 0.001) {
+            brazilskyPytelEditText.setText("0.0");
+        } else {
+            brazilskyPytelEditText.setText(String.valueOf(brazilskyPytelAktualni));
+        }
+        if (uruguayskyPytelAktualni < 0.001) {
+            uruguayskyPytelEditText.setText("0.0");
+        } else {
+            uruguayskyPytelEditText.setText(String.valueOf(uruguayskyPytelAktualni));
+        }
+        if (objemAktualni < 0.001) {
+            objemEditText.setText("0.0");
+        } else {
+            objemEditText.setText(String.valueOf(objemAktualni));
+        }
     }
-
-
 }

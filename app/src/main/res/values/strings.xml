@@ -43,4 +43,7 @@
     <string name="prd_zvuk">Akustická intenzita prdu</string>
     <string name="prd_zvuk_nadpis">Intenzita: </string>
     <string name="prd_zvuk_nazev">Název prdu: </string>
+
+    <string name="je_to_bzilion">Todlecto ještě neni bžilion velký, kemo…</string>
+    <string name="neni_to_bzilion">Todle je fakt bžilion velký…</string>
 </resources>
